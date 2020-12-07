@@ -5,4 +5,4 @@ WORKDIR /adaboost
 COPY src src
 COPY data data
 
-CMD [ "python", "./adaboost.py" ]
+CMD [ "python", "src/adaboost.py" ]
