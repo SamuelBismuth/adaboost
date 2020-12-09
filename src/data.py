@@ -26,9 +26,7 @@ class Data:
             for j in range(i + 1, len(self.data_lines)):
                 point_1 = self.data_lines[i].features.get_point()
                 point_2 = self.data_lines[j].features.get_point()
-                a = Line.get_a_by_points(point_1, point_2)
-                b = Line.get_b_by_point(point_1, a)
-                self.rules.append(Line(a, b))
+                self.rules.append(Line(point_1, point_2))
 
 
 class HcBodyTemperature(Data):
