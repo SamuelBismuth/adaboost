@@ -3,7 +3,5 @@ from data import HcBodyTemperature, Iris
 hc_body_temperature = HcBodyTemperature()
 iris = Iris()
 
-hc_body_temperature.print_data()
-iris.print_data()
-
-print('Finish.')
+for rule in hc_body_temperature.rules:
+    print(rule.line.pretty_str())
