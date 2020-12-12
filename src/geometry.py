@@ -32,10 +32,6 @@ class Line:
             a = regularLine.get_a_by_points(point_1, point_2)
             b = regularLine.get_b_by_point(point_1, a)
             self.line = regularLine(a, b)
-
-
-    def compute_z(self, points):
-        return self.line.compute_z(points)
     
 
 class regularLine:
@@ -62,9 +58,12 @@ class regularLine:
         return '{0}x + {1}'.format(self.get_a(), self.get_b())
 
 
-    def compute_z(self, points):
-        # TODO
-        pass
+    def get_relation_point_line(self, point):
+        localisation = point.get_x()  * self.get_a() + self.get_b() - point.get_y() 
+        if localisation < 0:
+            return -1 
+        else:
+            return 1
 
 
     @staticmethod    
@@ -97,6 +96,8 @@ class particularLine:
         return 'x = {0}'.format(self.get_x())
 
     
-    def compute_z(self, points):
-        # TODO
-        pass
+    def get_relation_point_line(self, point):
+        if self.get_x() < point.get_x():
+            return -1 
+        else:
+            return 1
