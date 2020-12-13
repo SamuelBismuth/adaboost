@@ -41,7 +41,7 @@ class Adaboost:
                 predicts[test_data_line_index] = 1
             else:
                 predicts[test_data_line_index] = -1
-        print(self.compute_accuracy(predicts, data))
+        return self.compute_accuracy(predicts, data)
         
 
     def compute_weighted_error(self):
@@ -69,6 +69,13 @@ class Adaboost:
     
     def select_best_rules_indexes(self):
         return self.rules_weigths.argsort()[-BEST_RULES:][::-1] 
+
+
+    def print_best_rules(self, title):
+        print('################# {0} ####################'.format(title))
+        for rule_index in self.rules_weigths.argsort()[-BEST_RULES:][::-1]:
+            print('rule: {0}, rule weight: {1}'.format(self.rules[rule_index].pretty_str(), self.rules_weigths[rule_index]))
+        print('####################################################')
 
     
     def compute_accuracy(self, predicts, data):

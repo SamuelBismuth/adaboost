@@ -24,4 +24,4 @@ class Rule:
     
 
     def pretty_str(self):
-        return '{0} prediction: {1}'.format(self.line.line.pretty_str(), self.prediction)
+        return '{0}'.format(self.line.line.pretty_str())

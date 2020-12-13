@@ -16,3 +16,7 @@ Run
     bash bash.sh 
 
 to enter in the container terminal.
+
+
+Python version: 3.9
+Submitters: Yishay Seroussi 305027948, Samuel Bismuth 342533064.

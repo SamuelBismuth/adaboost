@@ -23,11 +23,11 @@ class Data:
 
 
     def set_rules(self):
-        for i in range(0, len(self.train_data)):
-            for j in range(i + 1, len(self.train_data)):
-                point_1 = self.train_data[i].features.get_point()
-                point_2 = self.train_data[j].features.get_point()
-                self.rules.append(Rule(self.train_data, Line(point_1, point_2)))  # TODO: Check if we don't send all the train_data.
+        for i in range(0, len(self.data_lines)):
+            for j in range(i + 1, len(self.data_lines)):
+                point_1 = self.data_lines[i].features.get_point()
+                point_2 = self.data_lines[j].features.get_point()
+                self.rules.append(Rule(self.data_lines, Line(point_1, point_2)))  # TODO: Check if we don't send all the train_data.
 
 
 class HcBodyTemperature(Data):
