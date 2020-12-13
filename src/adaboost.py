@@ -2,6 +2,7 @@ import numpy as np
 
 
 ITERATIONS = 100
+BEST_RULES = 8
 
 
 class Adaboost:
@@ -15,7 +16,7 @@ class Adaboost:
         self.rules_error = np.zeros(len(rules))
 
     
-    def run(self):
+    def run_train(self):
         for i in range(ITERATIONS):
             # 0. Empty errors.
             self.rules_error = np.zeros(len(self.rules))
@@ -28,6 +29,20 @@ class Adaboost:
             # 4. Update point weights.
             self.compute_point_weight(selected_rule)
 
+    
+    def get_accuracy(self, data):
+        best_rules = self.select_best_rules_indexes()
+        predicts = np.zeros(len(data))
+        for test_data_line_index, test_data_line in enumerate(data):
+            rule_sum = 0
+            for rule in best_rules:
+                rule_sum += self.rules[rule].predict(test_data_line.features.get_point()) * self.rules_weigths[rule]
+            if rule_sum >= 0:
+                predicts[test_data_line_index] = 1
+            else:
+                predicts[test_data_line_index] = -1
+        print(self.compute_accuracy(predicts, data))
+        
 
     def compute_weighted_error(self):
         for rule_index, rule in enumerate(self.rules):
@@ -50,3 +65,18 @@ class Adaboost:
                 self.data_lines[point_weight_index].label.get_label() \
             )
         self.point_weights = np.divide(self.point_weights, np.sum(self.point_weights))
+
+    
+    def select_best_rules_indexes(self):
+        return self.rules_weigths.argsort()[-BEST_RULES:][::-1] 
+
+    
+    def compute_accuracy(self, predicts, data):
+        true = 0
+        false = 0
+        for i in range(len(predicts)):
+            if predicts[i] == data[i].label.get_label():
+                true += 1
+            else:
+                false +=1
+        return true / len(predicts)
