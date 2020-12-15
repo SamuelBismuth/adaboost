@@ -1,5 +1,6 @@
 from model import DataLine, Point
 from geometry import Line
+from rule import Rule
 import random
 
 
@@ -26,7 +27,7 @@ class Data:
             for j in range(i + 1, len(self.data_lines)):
                 point_1 = self.data_lines[i].features.get_point()
                 point_2 = self.data_lines[j].features.get_point()
-                self.rules.append(Line(point_1, point_2))
+                self.rules.append(Rule(self.data_lines, Line(point_1, point_2)))  # TODO: Check if we don't send all the train_data.
 
 
 class HcBodyTemperature(Data):
@@ -34,7 +35,7 @@ class HcBodyTemperature(Data):
 
     def __init__(self):
         super().__init__('HC_Body_Temperature.txt') 
-
+        
 
     def fill_data_line(self, data):
         self.data_lines.append(DataLine([data[0], data[2]], data[1]))
