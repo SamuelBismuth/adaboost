@@ -40,7 +40,7 @@ The code is composed of three folders.
     - rule.py -> Here the Rule class is defined.
     - adaboost.py -> Here you can find the main algorithm with the computation of the final accuracy and error.
 
-# Example of outputs:
+## Example of outputs:
 
 ################# Hc Body Temperature #################### <br>
 rule: -1.1111111111111216x + 187.7777777777788, rule weight: 0.3698335980974191 <br>
@@ -73,7 +73,7 @@ iris test accuracy: 0.88 <br>
 
 Here we printout the accuracy. To get the error, we only have to calculate 1 - accuracy.
 
-# Do you see overfitting?
+## Do you see overfitting?
 
 Let first focus on the Hc Body Temperature data set.
 The error of the train is usually about 30% which is much lower than the error we get in the test.
@@ -90,7 +90,7 @@ The test error / train error ~= 1
 The result with this data set is also much better that the one we have with the Hc Body Temperature data set.
 That's why, there is no reason to conclude that there is overfitting with the Iris data set.
 
-# Work division
+## Work division
 
 We worked on this code together using one computer as a pair programming.
 That is, we've handle and understand together the complexity of the adaboost implementation and the code design in python. There is nothing in this work that have been done only by one submitter.
