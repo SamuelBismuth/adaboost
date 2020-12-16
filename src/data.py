@@ -8,7 +8,7 @@ class Data:
 
 
     def __init__(self, file, delimiter=None):
-        with open('/adaboost/data/{0}'.format(file), 'r') as f:
+        with open('data/{0}'.format(file), 'r') as f:
             file_lines = f.readlines()
             self.data_lines = []
             self.rules = []

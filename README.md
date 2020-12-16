@@ -26,6 +26,18 @@ To enter in the container terminal (only for developement purpose):
 
     bash bash.sh 
 
+If you don't want to use docker, you are able to run the code in any machine by folowing the next steps:
+
+Install python3.9.
+
+Install numpy by running:
+
+    pip3 install numpy
+
+Run the main python file:
+
+    python3 main.py
+
 ## Code structure:
 
 The code is composed of three folders.
