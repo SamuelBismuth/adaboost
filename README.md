@@ -50,57 +50,115 @@ The code is composed of three folders.
     - geometry.py -> Here the classes Line and Point are defined.
     - model.py -> Here the Feature and Label classes are defined.
     - rule.py -> Here the Rule class is defined.
-    - adaboost.py -> Here you can find the main algorithm with the computation of the final accuracy and error.
+    - adaboost.py -> Here you can find the main algorithm with the computation of the final error and error.
 
 ## Example of outputs:
 
-################# Hc Body Temperature #################### <br>
-rule: -1.1111111111111216x + 187.7777777777788, rule weight: 0.3698335980974191 <br>
-rule: -14.999999999999787x + 1545.499999999979, rule weight: 0.22246613151532224 <br>
-rule: 14.166666666666632x + -1307.9166666666633, rule weight: 0.18620726376999933 <br>
-rule: -189.9999999999838x + 18811.999999998403, rule weight: 0.18383602002155972 <br>
-rule: -1.2500000000000044x + 189.50000000000045, rule weight: 0.18335340097559974 <br>
-rule: 10.000000000000213x + -910.000000000021, rule weight: 0.17967714682327982 <br>
-rule: 1.4285714285714373x + -68.71428571428655, rule weight: 0.17014897895062175 <br>
-rule: 2.0x + -119.19999999999999, rule weight: 0.16607354831318452 <br>
+
+# NUMBER OF RULES 1
+
+################# Hc Body Temperature error #################### <br>
+hc body temperature train error: 32.31 <br>
+hc body temperature test error: 32.69 <br>
 #################################################### <br>
-################# Hc Body Temperature ACCURACY #################### <br>
-hc body temperature train accuracy: 0.6923076923076923 <br>
-hc body temperature test accuracy: 0.5538461538461539 <br>
-#################################################### <br>
-################# Iris #################### <br>
-rule: -0.33333333333333237x + 5.999999999999997, rule weight: 1.4615807903595777 <br>
-rule: -2.333333333333332x + 11.399999999999997, rule weight: 0.1315670898877912 <br>
-rule: 12.000000000000036x + -27.500000000000092, rule weight: 0.022055062605134967 <br>
-rule: 0.7142857142857145x + 3.1714285714285704, rule weight: 0.021889187628204295 <br>
-rule: 0.3333333333333348x + 3.8666666666666623, rule weight: 0.021579059587843164 <br>
-rule: x = 2.8, rule weight: 0.0 <br>
-rule: 5.999999999999996x + -12.799999999999986, rule weight: 0.0 <br>
-rule: 3.9999999999999956x + -7.199999999999987, rule weight: 0.0 <br>
-#################################################### <br>
-################# Iris ACCURACY #################### <br>
-iris train accuracy: 0.9 <br>
-iris test accuracy: 0.88 <br>
+################# Iris error #################### <br>
+iris train error: 25.11 <br>
+iris test error: 24.89 <br>
 #################################################### <br>
 
-Here we printout the accuracy. To get the error, we only have to calculate 1 - accuracy.
+# NUMBER OF RULES 2
+
+################# Hc Body Temperature error #################### <br>
+hc body temperature train error: 23.1 <br>
+hc body temperature test error: 30.79 <br>
+#################################################### <br>
+################# Iris error #################### <br>
+iris train error: 3.22 <br>
+iris test error: 5.86 <br>
+#################################################### <br>
+
+# NUMBER OF RULES 3
+
+################# Hc Body Temperature error #################### <br>
+hc body temperature train error: 23.1 <br>
+hc body temperature test error: 30.79 <br>
+#################################################### <br>
+################# Iris error #################### <br>
+iris train error: 3.22 <br>
+iris test error: 5.86 <br>
+#################################################### <br>
+
+# NUMBER OF RULES 4
+
+################# Hc Body Temperature error #################### <br>
+hc body temperature train error: 19.32 <br>
+hc body temperature test error: 30.02 <br>
+#################################################### <br>
+################# Iris error #################### <br>
+iris train error: 2.63 <br>
+iris test error: 5.51 <br>
+#################################################### <br>
+
+# NUMBER OF RULES 5
+
+################# Hc Body Temperature error #################### <br>
+hc body temperature train error: 19.3 <br>
+hc body temperature test error: 30.12 <br>
+#################################################### <br>
+################# Iris error #################### <br>
+iris train error: 2.54 <br>
+iris test error: 5.45 <br>
+#################################################### <br>
+
+# NUMBER OF RULES 6
+
+################# Hc Body Temperature error #################### <br>
+hc body temperature train error: 16.58 <br>
+hc body temperature test error: 29.5 <br>
+#################################################### <br>
+################# Iris error #################### <br>
+iris train error: 2.44 <br>
+iris test error: 5.52 <br>
+#################################################### <br>
+
+# NUMBER OF RULES 7
+
+################# Hc Body Temperature error #################### <br>
+hc body temperature train error: 16.84 <br>
+hc body temperature test error: 29.76 <br>
+#################################################### <br>
+################# Iris error #################### <br>
+iris train error: 2.35 <br>
+iris test error: 5.37 <br>
+#################################################### <br>
+
+# NUMBER OF RULES 8
+
+################# Hc Body Temperature error #################### <br>
+hc body temperature train error: 13.41 <br>
+hc body temperature test error: 29.08 <br>
+#################################################### <br>
+################# Iris error #################### <br>
+iris train error: 2.25 <br>
+iris test error: 5.41 <br>
+#################################################### <br>
 
 ## Do you see overfitting?
 
 Let first focus on the Hc Body Temperature data set.
-The error of the train is usually about 30% which is much lower than the error we get in the test.
-The error of the test is usually about 45%.
-The test error / train error ~= 1.5
-Adding to the fact that we have 8 rules, and by the theorem of Union of hypotheses, the vc dimension is high and equal to 2\*3\*8\*log(24).
+
+Obviously, the result are less impresive than the Iris's data set results.
+Both error are relatively high.
+
+The difference between the error of the train and the error of the test is growing up with the number of rules, anotherly said, with the number of VC dimension.
 
 That is, we can say that there is overfitting.
 
 Regarding the Iris data set.
-The error of the train is usually about 10% which is almost equal to the error we get in the test.
-The test error / train error ~= 1
 
-The result with this data set is also much better that the one we have with the Hc Body Temperature data set.
-That's why, there is no reason to conclude that there is overfitting with the Iris data set.
+The result with this data set is much better that the one we have with the Hc Body Temperature data set.
+Also, while the VC dimension is growing, there is no a big side effect on the errors.
+That's why, there is no reason to conclude that there is a big overfitting with the Iris data set. Nevertheless, it is not excluded that a little overfitting is actually exist.
 
 ## Work division
 

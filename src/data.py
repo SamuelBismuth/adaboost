@@ -15,10 +15,7 @@ class Data:
             for i in range(0, len(file_lines)):
                 data = file_lines[i].split(delimiter)
                 self.fill_data_line(data)
-            random.shuffle(self.data_lines)
-            middle = int(len(self.data_lines) / 2)
-            self.test_data = self.data_lines[:middle]       
-            self.train_data = self.data_lines[middle:]
+            self.shuffle_train_test()
             self.set_rules()
 
 
@@ -27,7 +24,14 @@ class Data:
             for j in range(i + 1, len(self.data_lines)):
                 point_1 = self.data_lines[i].features.get_point()
                 point_2 = self.data_lines[j].features.get_point()
-                self.rules.append(Rule(self.data_lines, Line(point_1, point_2)))  # TODO: Check if we don't send all the train_data.
+                self.rules.append(Rule(self.data_lines, Line(point_1, point_2)))
+
+
+    def shuffle_train_test(self):
+        random.shuffle(self.data_lines)
+        middle = int(len(self.data_lines) / 2)
+        self.test_data = self.data_lines[:middle]       
+        self.train_data = self.data_lines[middle:]
 
 
 class HcBodyTemperature(Data):

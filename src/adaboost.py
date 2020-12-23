@@ -1,7 +1,6 @@
 import numpy as np
 
 
-ITERATIONS = 100
 BEST_RULES = 8
 
 
@@ -17,7 +16,7 @@ class Adaboost:
 
     
     def run_train(self):
-        for i in range(ITERATIONS):
+        for i in range(BEST_RULES):
             # 0. Empty errors.
             self.rules_error = np.zeros(len(self.rules))
             # 1. Compute the weighted error for h in H.
@@ -30,18 +29,21 @@ class Adaboost:
             self.compute_point_weight(selected_rule)
 
     
-    def get_accuracy(self, data):
+    def get_error(self, data):
+        errors_sum = []
         best_rules = self.select_best_rules_indexes()
-        predicts = np.zeros(len(data))
-        for test_data_line_index, test_data_line in enumerate(data):
-            rule_sum = 0
-            for rule in best_rules:
-                rule_sum += self.rules[rule].predict(test_data_line.features.get_point()) * self.rules_weigths[rule]
-            if rule_sum >= 0:
-                predicts[test_data_line_index] = 1
-            else:
-                predicts[test_data_line_index] = -1
-        return self.compute_accuracy(predicts, data)
+        for i in range(BEST_RULES):
+            predicts = np.zeros(len(data))
+            for test_data_line_index, test_data_line in enumerate(data):
+                rule_sum = 0
+                for rule in best_rules[:i]:
+                    rule_sum += self.rules[rule].predict(test_data_line.features.get_point()) * self.rules_weigths[rule]
+                if rule_sum >= 0:
+                    predicts[test_data_line_index] = 1
+                else:
+                    predicts[test_data_line_index] = -1
+            errors_sum.append(self.compute_error(predicts, data))
+        return np.array(errors_sum)
         
 
     def compute_weighted_error(self):
@@ -53,6 +55,8 @@ class Adaboost:
 
     def compute_rule_weight(self, rule_index):
         error = self.rules_error[rule_index]
+        if error == 0:
+            error = 0.00001
         return 0.5 * np.log((1 - error) / error)
 
 
@@ -71,19 +75,16 @@ class Adaboost:
         return self.rules_weigths.argsort()[-BEST_RULES:][::-1] 
 
 
-    def print_best_rules(self, title):
+    def return_best_rules(self, title):
         print('################# {0} ####################'.format(title))
         for rule_index in self.rules_weigths.argsort()[-BEST_RULES:][::-1]:
             print('rule: {0}, rule weight: {1}'.format(self.rules[rule_index].pretty_str(), self.rules_weigths[rule_index]))
         print('####################################################')
 
     
-    def compute_accuracy(self, predicts, data):
-        true = 0
+    def compute_error(self, predicts, data):
         false = 0
         for i in range(len(predicts)):
-            if predicts[i] == data[i].label.get_label():
-                true += 1
-            else:
-                false +=1
-        return true / len(predicts)
+            if predicts[i] != data[i].label.get_label():
+                false += 1
+        return false
